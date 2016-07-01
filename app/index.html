@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MusApp</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>MusApp</h1>
+            <div class="audio-player">
+                <audio class="player" controls src autoplay>
+                    Your browser does not support the <code>audio</code> element.
+                </audio>
+                <div class="info">Now Playing: <span></span></div>
+            </div>
+            <div class="search-form">
+                <form action="#">
+                    <input class="search-field" placeholder="Search for Artist">
+                    <button class="search">Search</button>
+                </form>
+            </div>
+            <h3>Artist Tracks:</h3>
+            <div class="tracks">
+                <ul></ul>
+            </div>
+        </div>
+        <script src="js/bundle.js"></script>
+    </body>
+</html>
