@@ -99,7 +99,7 @@ audio {
 
 .audio-player {
     position: relative;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.275);
     padding: 20px;
     border: 1px solid black;
     box-shadow: 0 0 4px black;
@@ -113,6 +113,7 @@ audio {
             color: white;
             font-weight: bold;
             text-decoration: none;
+            transition: color 1s ease;
             &:hover {
                 text-decoration: underline;
             }
