@@ -11,19 +11,21 @@
     <body>
         <div class="container">
             <h1>MusApp</h1>
-            <div class="audio-player">
-                <audio class="player" controls src autoplay>
-                    Your browser does not support the <code>audio</code> element.
-                </audio>
-                <div class="info">Now Playing: <span>click a track to play.</span></div>
-            </div>
-            <div class="search-form">
-                <form action="#">
-                    <input class="search-field" placeholder="enter artist name...">
-                </form>
+            <div class="header">
+                <div class="audio-player">
+                    <audio class="player" controls src autoplay>
+                        Your browser does not support the <code>audio</code> element.
+                    </audio>
+                    <div class="info">Now Playing: <span>click a track to play.</span></div>
+                </div>
+                <div class="search-form">
+                    <form action="#">
+                        <input class="search-field" placeholder="search for music...">
+                    </form>
+                </div>
             </div>
             <div class="tracks">
-                <ul></ul>
+                <ul><span class="loading"></span></ul>
             </div>
             <div class="footer"></div>
         </div>
