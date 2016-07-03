@@ -33,7 +33,7 @@ body {
                 }
                 .info {
                     font-size: 1.5em;
-                    span {
+                    a {
                         color: rebeccapurple;
                     }
                 }
@@ -108,8 +108,14 @@ audio {
         margin-top: 20px;
         font-size: 1.2em;
         transition: all 1s ease-out;
-        span {
+        text-shadow: 0 0 2px rebeccapurple, 0 1px 1px white, 0 3px 4px black;
+        a {
+            color: white;
             font-weight: bold;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }
@@ -156,7 +162,7 @@ audio {
     background: url(../images/black-metal.jpg) center/cover fixed no-repeat;
     min-height: 100%;
     margin: 0;
-    padding: 10px 10px 15px;
+    padding: 20px;
     box-shadow: 0 0 20px 5px black;
     transition: padding 1.4s ease;
     ul {
@@ -275,10 +281,26 @@ audio {
 }
 
 @media only screen and (max-width: 530px) {
+    h1 {
+        font-size: 60px;
+    }
     .tracks ul li {
         width: 50%;
     }
+}
+
+@media only screen and (max-width: 380px) {
+    body .container.scrolled .audio-player .info {
+        font-size: 0.9em;
+    }
     h1 {
         font-size: 60px;
+    }
+    .search-form input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .tracks ul li {
+        width: 100%;
     }
 }
