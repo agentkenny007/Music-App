@@ -35,6 +35,7 @@ var displayTrackInfo = function(){
                         .attr("src", result.artwork_url || result.user.avatar_url)
                     .end().find('.play')
                         .attr("data-url", result.stream_url)
+                        .attr("data-link", result.permalink_url)
                     .end().find('.title')
                         .attr("title", result.title)
                         .html(result.title)
@@ -49,8 +50,13 @@ var displayTrackInfo = function(){
 
 var playTrack = function(){
     var track = $(this);
-    $('.player').attr("src", `${track.data('url')}?client_id=${ID}`);
-    $('.info span').text(track.parent().siblings('.title').text());
+    $('.player')
+        .attr("src", `${track.data('url')}?client_id=${ID}`);
+    $('.info a')
+        .attr("href", track.data('link'))
+        .text(track.parent().siblings('.title').text());
+    $('audio')[0]
+        .play();
 };
 
 var run = function(){
