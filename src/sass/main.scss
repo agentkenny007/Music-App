@@ -269,6 +269,36 @@ audio {
     border-top: 1px solid white;
 }
 
+@media only screen and (min-width: 1440px) {
+    .tracks ul li {
+        width: 16.666%;
+    }
+}
+
+@media only screen and (min-width: 1720px) {
+    .tracks ul li {
+        width: 14.286%;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .tracks ul li {
+        width: 12.5%;
+    }
+}
+
+@media only screen and (min-width: 2235px) {
+    .tracks ul li {
+        width: 11.111%;
+    }
+}
+
+@media only screen and (min-width: 2560px) {
+    .tracks ul li {
+        width: 10%;
+    }
+}
+
 @media only screen and (max-width: 888px) {
     .tracks ul li {
         width: 25%;
