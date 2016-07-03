@@ -172,6 +172,7 @@ audio {
         padding: 0;
         .loading {
             display: inline-block;
+            cursor: wait;
             width: 100px;
             height: 100px;
             border-radius: 100px;
