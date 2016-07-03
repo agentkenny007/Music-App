@@ -14,7 +14,7 @@ var fetchTimeout, date = new Date(),
 
 var animateHeader = function(){
     var screen = $(this), wrapper = $('.container');
-    if (screen.scrollTop() > 1 && wrapper.hasClass('scrolled') == false)
+    if (screen.scrollTop() > 0 && wrapper.hasClass('scrolled') == false)
         wrapper.addClass('scrolled');
     else if (screen.scrollTop() < 1 && wrapper.hasClass('scrolled'))
         wrapper.removeClass('scrolled');
@@ -25,28 +25,7 @@ var displayTrackInfo = function(){
     if (fetchTimeout) clearTimeout(fetchTimeout);
     fetchTimeout = setTimeout(function(){
         fetchTimeout = null;
-        getTracks(input.val()).then(function(data){
-            var results = $('.tracks ul');
-            results.html('');
-            console.log(data);
-            data.forEach(function(result){
-                results.append(rInfo.clone()
-                    .find('img')
-                        .attr("src", result.artwork_url || result.user.avatar_url)
-                    .end().find('.play')
-                        .data("url", result.stream_url)
-                        .data("link", result.permalink_url)
-                        // .attr("data-url", result.stream_url)
-                        // .attr("data-link", result.permalink_url)
-                    .end().find('.title')
-                        .attr("title", result.title)
-                        .html(result.title)
-                    .end().find('.username')
-                        .html(`<a href="${result.user.permalink_url}" target="_blank" title="${result.user.username}">${result.user.username}</a>`)
-                    .end()
-                );
-            });
-        });
+        getTracks(input.val()).then(sortAndDisplay);
     }, 500);
 };
 
@@ -66,10 +45,33 @@ var run = function(){
     $('.footer').append(`&copy; ${date.getFullYear()} MusApp. All Rights Reserved.`);
 };
 
-$(window).scroll(animateHeader);
+var sortAndDisplay = function(data){
+    console.log(data);
+    var results = $('.tracks ul');
+    results.html('');
+    data.forEach(function(result){
+        results.append(rInfo.clone()
+            .find('img')
+                .attr("src", result.artwork_url || result.user.avatar_url)
+            .end().find('.play')
+                .data("url", result.stream_url)
+                .data("link", result.permalink_url)
+                // .attr("data-url", result.stream_url)
+                // .attr("data-link", result.permalink_url)
+            .end().find('.title')
+                .attr("title", result.title)
+                .html(result.title)
+            .end().find('.username')
+                .html(`<a href="${result.user.permalink_url}" target="_blank" title="${result.user.username}">${result.user.username}</a>`)
+            .end()
+        );
+    });
+};
 
 $(document)
     .delegate('.search-field', 'keyup', displayTrackInfo)
     .delegate('.tracks .play', 'click', playTrack)
     .delegate('form', 'submit', function(){ return false; })
     .ready(run);
+
+$(window).scroll(animateHeader);
