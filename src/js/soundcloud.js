@@ -5,7 +5,7 @@ var base_url = 'https://api.soundcloud.com';
 
 function getArtistTracks(artist){
     return $.ajax({
-        url: base_url + '/tracks/',
+        url: base_url + '/tracks',
         data: {
             q: artist,
             client_id: ID

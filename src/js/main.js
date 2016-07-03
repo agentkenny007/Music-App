@@ -5,9 +5,11 @@ import ID from './cred';
 var fetchTimeout,
     rInfo = $(`
         <li>
-            <img>
-            <span class="title"></span>
-            <span class="username"></span>
+            <div class="card">
+                <div><img><span class="play"></span></div>
+                <marquee class="title"></marquee>
+                <span class="username"></span>
+            </div>
         </li>`);
 
 var displayTrackInfo = function(event){
@@ -17,26 +19,33 @@ var displayTrackInfo = function(event){
         fetchTimeout = null;
         getTracks(input.val()).then(function(data){
             var results = $('.tracks ul');
+            results.html('');
+            console.log(data);
             data.forEach(function(result){
                 results.append(rInfo.clone()
                     .find('img')
-                        .attr("src", result.user.avatar_url)
-                        .attr("data-stream", result.stream_url)
+                        .attr("src", result.artwork_url || result.user.avatar_url)
+                    .end().find('.play')
+                        .attr("data-url", result.stream_url)
                     .end().find('.title')
+                        .attr("title", result.title)
                         .html(result.title)
                     .end().find('.username')
-                        .html(result.user.username)
+                        .html(`<a href="${result.user.permalink_url}" target="_blank" title="${result.user.username}">${result.user.username}</a>`)
                     .end()
                 );
             });
         });
     }, 500);
+    event.preventDefault();
 };
 
-var playTrack = function(event){
-    $('.player').attr("src", $(this).data('stream') + "?client_id=" + ID);
+var playTrack = function(){
+    var track = $(this);
+    $('.player').attr("src", `${track.data('url')}?client_id=${ID}`);
+    $('.info span').text(track.parent().siblings('.title').text());
 };
 
 $(document)
     .delegate('.search-field', 'keyup', displayTrackInfo)
-    .delegate('.tracks img', 'click', playTrack);
+    .delegate('.tracks .play', 'click', playTrack);
