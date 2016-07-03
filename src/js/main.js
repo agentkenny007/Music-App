@@ -47,7 +47,12 @@ var run = function(){
 
 var sortAndDisplay = function(data){
     console.log(data);
-    var results = $('.tracks ul');
+    var nowPlaying = $('.info a'),
+        results = $('.tracks ul');
+    if (nowPlaying.hasClass('loading'))
+        nowPlaying
+            .removeClass('loading')
+            .text('click a track to play.');
     results.html('');
     data.forEach(function(result){
         results.append(rInfo.clone()
