@@ -2,7 +2,7 @@ import $ from 'jquery';
 import {getTracks} from './soundcloud';
 import ID from './cred';
 
-var fetchTimeout,
+var fetchTimeout, date = new Date(),
     rInfo = $(`
         <li>
             <div class="card">
@@ -12,7 +12,15 @@ var fetchTimeout,
             </div>
         </li>`);
 
-var displayTrackInfo = function(event){
+var animateHeader = function(){
+    var screen = $(this), wrapper = $('.container');
+    if (screen.scrollTop() > 1 && wrapper.hasClass('scrolled') == false)
+        wrapper.addClass('scrolled');
+    else if (screen.scrollTop() < 1 && wrapper.hasClass('scrolled'))
+        wrapper.removeClass('scrolled');
+};
+
+var displayTrackInfo = function(){
     var input = $(this);
     if (fetchTimeout) clearTimeout(fetchTimeout);
     fetchTimeout = setTimeout(function(){
@@ -37,7 +45,6 @@ var displayTrackInfo = function(event){
             });
         });
     }, 500);
-    event.preventDefault();
 };
 
 var playTrack = function(){
@@ -46,6 +53,15 @@ var playTrack = function(){
     $('.info span').text(track.parent().siblings('.title').text());
 };
 
+var run = function(){
+    displayTrackInfo();
+    $('.footer').append(`&copy; ${date.getFullYear()} MusApp. All Rights Reserved.`);
+};
+
+$(window).scroll(animateHeader);
+
 $(document)
     .delegate('.search-field', 'keyup', displayTrackInfo)
-    .delegate('.tracks .play', 'click', playTrack);
+    .delegate('.tracks .play', 'click', playTrack)
+    .delegate('form', 'submit', function(){ return false; })
+    .ready(run);
