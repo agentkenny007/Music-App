@@ -1,3 +1,32 @@
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -ms-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transform($transformation) {
+    -webkit-transform: $transformation;
+    -moz-transform: $transformation;
+    -o-transform: $transformation;
+    -ms-transform: $transformation;
+    transform: $transformation;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -18,22 +47,17 @@ body {
                 z-index: 2;
             }
             .audio-player {
+                background: black;
                 background: rgba(0, 0, 0, 1);
                 color: white;
                 audio {
                     width: 100%;
                     max-width: 800px;
-                    -webkit-box-shadow: 0 2px 12px -7px;
-                    -moz-box-shadow: 0 2px 12px -7px;
-                    -ms-box-shadow: 0 2px 12px -7px;
-                    box-shadow: 0 2px 12px -7px;
                     border-color: rgba(255, 255, 255, .5);
+                    @include box-shadow(0 2px 12px -7px);
                     &:hover, &:focus, &:active {
-                        -webkit-box-shadow: 0 15px 10px -10px rgba(255, 255, 255, .25);
-                        -moz-box-shadow: 0 15px 10px -10px rgba(255, 255, 255, .25);
-                        -ms-box-shadow: 0 15px 10px -10px rgba(255, 255, 255, .25);
-                        box-shadow: 0 15px 10px -10px rgba(255, 255, 255, .25);
                         border-color: rgba(255, 255, 255, .85);
+                        @include box-shadow(0 15px 10px -10px rgba(255, 255, 255, .25));
                     }
                 }
                 .info {
@@ -53,16 +77,13 @@ body {
                 background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(181,181,181,1) 50%, rgba(255,255,255,1) 100%);
                 background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(181,181,181,1) 50%, rgba(255,255,255,1) 100%);
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
-                box-shadow: 0 2px 5px black;
-                border-bottom-color: white
+                border-bottom-color: white;
+                @include box-shadow(0 2px 5px black);
             }
             .tracks {
                 margin-top: 123px;
                 padding-top: 213px;
-                -webkit-transition: none;
-                -moz-transition: none;
-                -o-transition: none;
-                transition: none;
+                @include transition(none);
             }
         }
     }
@@ -86,68 +107,40 @@ h2 {
 }
 
 audio:hover, audio:focus, audio:active {
-    -webkit-box-shadow: 0 15px 20px rgba(0,0, 0, 0.4);
-    -moz-box-shadow: 0 15px 20px rgba(0,0, 0, 0.4);
-    -ms-box-shadow: 0 15px 20px rgba(0,0, 0, 0.4);
-    box-shadow: 0 15px 20px rgba(0,0, 0, 0.4);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
+    @include box-shadow(0 15px 20px rgba(0,0, 0, 0.4));
+    @include transform(scale(1.05));
 }
 
 audio {
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    -moz-box-shadow: 0px 2px 6px 0px #000;
-    -webkit-box-shadow:  0px 2px 6px 0px #000;
-    -ms-box-shadow: 0px 2px 6px 0px #000;
-    box-shadow: 0px 2px 6px 0px #000;
-    -webkit-border-radius:7px 7px 7px 7px;
-    -moz-border-radius:7px 7px 7px 7px;
-    -khtml-border-radius:7px 7px 7px 7px;
-    border-radius:7px 7px 7px 7px;
     border: 1px solid black;
+    @include transition(all 0.5s ease);
+    @include box-shadow(0px 2px 6px 0px #000);
+    @include border-radius(7px 7px 7px 7px);
 }
 
 .header {
-    -webkit-transition: all 0.75s ease;
-    -moz-transition: all 0.75s ease;
-    -o-transition: all 0.75s ease;
-    transition: all 0.75s ease;
-    margin-top: 200px;
     width: 100%;
+    margin-top: 200px;
+    @include transition(all 0.75s ease);
 }
 
 .audio-player {
     position: relative;
     background: rgba(0, 0, 0, 0.275);
-    padding: 20px;
     border: 1px solid black;
-    -webkit-box-shadow: 0 0 4px black;
-    -moz-box-shadow: 0 0 4px black;
-    -ms-box-shadow: 0 0 4px black;
-    box-shadow: 0 0 4px black;
+    padding: 20px;
     z-index: 2;
+    @include box-shadow(0 0 4px black);
     .info {
         margin-top: 20px;
         font-size: 1.2em;
-        -webkit-transition: all 1s ease-out;
-        -moz-transition: all 1s ease-out;
-        -o-transition: all 1s ease-out;
-        transition: all 1s ease-out;
         text-shadow: 0 0 2px rebeccapurple, 0 1px 1px white, 0 3px 4px black;
+        @include transition(all 1s ease-out);
         a {
             color: white;
             font-weight: bold;
             text-decoration: none;
-            -webkit-transition: color 1s ease;
-            -moz-transition: color 1s ease;
-            -o-transition: color 1s ease;
-            transition: color 1s ease;
+            @include transition(color 1s ease);
             &.loading {
                 cursor: wait;
             }
@@ -163,10 +156,6 @@ audio {
     border-top: 1px solid white;
     border-bottom: 1px solid rgba(255, 255, 255, .5);
     padding: 10px;
-    -webkit-box-shadow: inset 0 0 5px black;
-    -moz-box-shadow: inset 0 0 5px black;
-    -ms-box-shadow: inset 0 0 5px black;
-    box-shadow: inset 0 0 5px black;
     background: rgba(0, 0, 0, 0.88);
     background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,1) 100%);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,1)), color-stop(20%, rgba(0,0,0,0.6)), color-stop(80%, rgba(0,0,0,0.6)), color-stop(100%, rgba(0,0,0,1)));
@@ -175,39 +164,25 @@ audio {
     background: -ms-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,1) 100%);
     background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1 );
+    @include box-shadow(inset 0 0 5px black);
     input {
         font-size: 2em;
         text-align: center;
-        border-radius: 4px;
         border: 1px solid rgba(0, 0, 0, .45);
-        -webkit-box-shadow: 0 6px 7px -1px black;
-        -moz-box-shadow: 0 6px 7px -1px black;
-        -ms-box-shadow: 0 6px 7px -1px black;
-        box-shadow: 0 6px 7px -1px black;
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-        outline: 0;
         padding-top: 6px;
+        outline: 0;
+        @include border-radius(4px);
+        @include box-shadow(0 6px 7px -1px black);
+        @include transition(all 0.5s ease);
         &:hover {
-            -webkit-box-shadow: 0 0 9px white;
-            -moz-box-shadow: 0 0 9px white;
-            -ms-box-shadow: 0 0 9px white;
-            box-shadow: 0 0 9px white;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -khtml-border-radius: 10px;
-            border-radius: 10px;
+            @include box-shadow(0 0 9px white);
+            @include border-radius(10px);
         }
         &:active, &:focus {
             background: black;
-            border: 1px solid rgba(255, 255, 255, .6);
-            -webkit-box-shadow: 0 1px 7px black;
-            -moz-box-shadow: 0 1px 7px black;
-            -ms-box-shadow: 0 1px 7px black;
-            box-shadow: 0 1px 7px black;
             color: white;
+            border: 1px solid rgba(255, 255, 255, .6);
+            @include box-shadow(0 1px 7px black);
         }
     }
 }
@@ -219,14 +194,8 @@ audio {
     min-height: 100%;
     margin: 0;
     padding: 20px;
-    -webkit-box-shadow: 0 0 20px 5px black;
-    -moz-box-shadow: 0 0 20px 5px black;
-    -ms-box-shadow: 0 0 20px 5px black;
-    box-shadow: 0 0 20px 5px black;
-    -webkit-transition: padding 1.4s ease;
-    -moz-transition: padding 1.4s ease;
-    -o-transition: padding 1.4s ease;
-    transition: padding 1.4s ease;
+    @include box-shadow(0 0 20px 5px black);
+    @include transition(padding 1.4s ease);
     ul {
         list-style: none;
         margin: 0;
@@ -236,48 +205,39 @@ audio {
             cursor: wait;
             width: 100px;
             height: 100px;
-            -webkit-border-radius: 100px;
-            -moz-border-radius: 100px;
-            -khtml-border-radius: 100px;
-            border-radius: 100px;
             background: url(../images/loading-grey.gif) center/160px no-repeat;
             border: 1px solid rgba(200, 250, 250, .6);
-            -webkit-box-shadow: 0 1px 5px rgba(200, 250, 250, .9);
-            -moz-box-shadow: 0 1px 5px rgba(200, 250, 250, .9);
-            -ms-box-shadow: 0 1px 5px rgba(200, 250, 250, .9);
-            box-shadow: 0 1px 5px rgba(200, 250, 250, .9);
             margin-top: 110px;
+            @include box-shadow(0 1px 5px rgba(200, 250, 250, .9));
+            @include border-radius(100px);
         }
         .card {
+            background: rgba(0, 0, 0, 0.7);
+            color: grey;
+            border: 1px solid rebeccapurple;
+            padding: 15px;
+            text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-align: center;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rebeccapurple;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px 5px black;
-            color: grey;
+            @include border-radius(6px);
+            @include box-shadow(0 4px 20px 5px black);
             a {
                 color: grey;
                 text-decoration: none;
-                transition: all .3s ease;
                 letter-spacing: 1px;
                 &:hover {
                     color: white;
                     text-decoration: underline;
-                    -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
                 }
             }
             div {
                 position: relative;
-                transition: all 0.6s ease;
+                @include transition(all 0.6s ease);
                 &:hover {
-                    transform: rotate(360deg);
+                    @include transform(rotate(360deg));
                     img {
-                        border-radius: 200px;
                         border: 1px solid black;
+                        @include border-radius(200px);
                     }
                     span {
                         border-color: transparent;
@@ -289,16 +249,16 @@ audio {
                 color: rebeccapurple;
             }
             .play {
-                display: block;
-                cursor: pointer;
                 position: absolute;
+                cursor: pointer;
+                display: block;
                 top: 0;
+                margin-top: -2%;
                 width: 100%;
                 height: 100%;
                 border-left: 1px solid black;
                 border-right: 1px solid black;
-                border-radius: 3px;
-                margin-top: -2%;
+                @include border-radius(3px);
                 &:hover {
                     background: url(../images/play.png) center/70px no-repeat;
                 }
@@ -313,17 +273,17 @@ audio {
         img {
             cursor: pointer;
             width: 100%;
-            border-radius: 3px;
             border: 1px solid grey;
-            box-shadow: 0 2px 12px -5px white;
-            transition: all .875s ease;
+            @include border-radius(3px);
+            @include box-shadow(0 2px 12px -5px white);
+            @include transition(all .875s ease);
         }
         li {
             display: inline-block;
             width: 20%;
-            box-sizing: border-box;
             padding: 20px;
-            transition: all 2s ease;
+            box-sizing: border-box;
+            @include transition(all 2s ease);
         }
     }
 }
@@ -331,10 +291,10 @@ audio {
 .footer {
     background: rebeccapurple;
     background: rgba(102, 51, 153, 0.5);
-    padding: 10px 0 5px;
+    border-top: 1px solid white;
     font-size: 0.9em;
     text-shadow: 0 1px 2px black, 0 1px 1px white;
-    border-top: 1px solid white;
+    padding: 10px 0 5px;
 }
 
 @media only screen and (min-width: 1440px) {
@@ -384,15 +344,15 @@ audio {
         font-size: 60px;
     }
     h2 {
-        font-size: 1.4em;
+        display: inline-block;
         top: 90px;
         background: rgba(255, 255, 255, .85);
-        display: inline-block;
-        padding: 0 20px 3px;
-        border-radius: 10px;
         border: 1px solid rgba(0, 0, 0, .675);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, .75);
+        font-size: 1.4em;
         text-shadow: 0 1px 1px white, 0 2px 1px black;
+        padding: 0 20px 3px;
+        @include border-radius(10px);
+        @include box-shadow(0 2px 5px rgba(0, 0, 0, .75));
     }
     .tracks ul li {
         width: 50%;
